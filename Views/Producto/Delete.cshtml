@@ -1,0 +1,46 @@
+﻿@model WebAlmacen.Models.Producto
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminando producto...</h2>
+
+<h3>¿Estás seguro que deseas eliminar este registro?</h3>
+
+@using (Html.BeginForm("Delete", "Producto", FormMethod.Post, new { @id = "notificationForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Id Producto
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IdProducto, new { id = "IdProducto" })
+            </dd>
+
+            <dt>
+                Descripción
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+        </dl>
+
+        <div class="form-actions no-color">
+            <input type="button" value="Regresar a la lista" class="btn btn-default" onclick="goLista()" />
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    function goLista() {
+        window.location.href = '/Producto/Index';
+    }
+</script>
